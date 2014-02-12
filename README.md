@@ -31,7 +31,7 @@ Check source code for more details. In additional, you could find more in `/exam
 Live example
 ============
 
-* http://jsfiddle.net/nLMwt/22/
+* http://jsfiddle.net/nLMwt/23/show
 
 
 Ready to use as a regular JS assets
