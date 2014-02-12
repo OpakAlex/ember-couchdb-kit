@@ -31,13 +31,13 @@ Check source code for more details. In additional, you could find more in `/exam
 Live example
 ============
 
-* http://jsfiddle.net/nLMwt/17
+* http://jsfiddle.net/nLMwt/22/
 
 
 Ready to use as a regular JS assets
 -----------------------------------
 
-An `ember-couchdb-kit` ships both with compiled js assets and coffee sources. 
+An `ember-couchdb-kit` ships both with compiled js assets and coffee sources.
 Compiled assets plased in `dist/**.js` folder.
 
 
