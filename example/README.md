@@ -3,11 +3,14 @@ Simple application which brings all features together
 Online version
 ==============
 
-* http://jsfiddle.net/nLMwt/16/show
+* http://jsfiddle.net/nLMwt/23/show/
 
 
 Installation
 ============
+
+Setup CORS for couchdb
+http://docs.couchdb.org/en/1.4.x/configuring.html
 
 ```
 bundle install
