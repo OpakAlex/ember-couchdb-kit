@@ -16,7 +16,7 @@
       return this.registiry[key];
     };
 
-    BaseRegistry.prototype.remove = function() {
+    BaseRegistry.prototype.remove = function(key) {
       return delete this.registiry[key];
     };
 
@@ -73,7 +73,27 @@
       _results = [];
       for (k in _ref3) {
         v = _ref3[k];
-        _results.push(v.stop());
+        v.stop();
+        _results.push(this.remove(k));
+      }
+      return _results;
+    };
+
+    ChangesWorkersClass.prototype.stopAllwithoutWorkers = function(workers) {
+      var k, v, _ref3, _results;
+      if (workers == null) {
+        workers = [];
+      }
+      _ref3 = this.registiry;
+      _results = [];
+      for (k in _ref3) {
+        v = _ref3[k];
+        if (!(workers.indexOf(k) >= 0)) {
+          v.stop();
+          _results.push(this.remove(k));
+        } else {
+          _results.push(void 0);
+        }
       }
       return _results;
     };

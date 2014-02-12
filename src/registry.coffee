@@ -8,7 +8,7 @@ class EmberCouchDBKit.BaseRegistry
   get: (key) ->
     @registiry[key]
 
-  remove: ->
+  remove: (key)->
     delete @registiry[key]
 
 class EmberCouchDBKit.RevsStoreClass extends EmberCouchDBKit.BaseRegistry
@@ -27,5 +27,12 @@ class EmberCouchDBKit.ChangesWorkersClass extends EmberCouchDBKit.BaseRegistry
   stopAll: ->
     for k,v of @registiry
       v.stop()
+      @remove(k)
+
+  stopAllwithoutWorkers: (workers=[]) ->
+    for k,v of @registiry
+      unless workers.indexOf(k) >= 0
+        v.stop()
+        @remove(k)
 
 EmberCouchDBKit.ChangesWorkers =  new EmberCouchDBKit.ChangesWorkersClass()
