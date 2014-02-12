@@ -10,6 +10,7 @@
     primaryKey: '_id',
     normalize: function(type, hash, prop) {
       this.normalizeId(hash);
+      this.normalizeRev(hash);
       this.normalizeAttachments(hash["_attachments"], type.typeKey, hash);
       this.addHistoryId(hash);
       this.normalizeUsingDeclaredMapping(type, hash);
@@ -59,6 +60,10 @@
     },
     normalizeId: function(hash) {
       return hash.id = hash["_id"] || hash["id"];
+    },
+    normalizeRev: function(hash) {
+      hash['rev'] = hash["rev"] || hash["_rev"];
+      return delete hash["_rev"];
     },
     normalizeRelationships: function(type, hash) {
       var key, payloadKey;
@@ -372,18 +377,7 @@
     _updateAttachmnets: function(record, json) {
       var _attachments;
       _attachments = {};
-      record.get('attachments').forEach(function(item) {
-        var attachment;
-        attachment = EmberCouchDBKit.AttachmentStore.get(item.get('id'));
-        return _attachments[item.get('file_name')] = {
-          content_type: attachment.content_type,
-          digest: attachment.digest,
-          length: attachment.length,
-          stub: attachment.stub,
-          revpos: attachment.revpos
-        };
-      });
-      json._attachments = _attachments;
+      json._attachments = record.get('_data._attachments');
       delete json.attachments;
       return delete json.history;
     },
