@@ -71,7 +71,12 @@
               <button type="submit" class="btn btn-xs btn-default"> Ok </button>
 
               {{#view App.AttachmentView contextBinding=this}}
-                <button {{action 'browseFile' target=view}} class="btn btn-xs btn-default"> Attach </button>
+                <button {{action 'browseFile' target=view}} class="btn btn-xs btn-default"> 
+                  {{#if controller.isAttachmentLoad}}
+                    <i class="icon icon-spinner icon-spin"></i> 
+                  {{/if}}
+                  Attach 
+                </button>
               {{/view}}
 
             {{else}}
