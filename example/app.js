@@ -125,6 +125,7 @@ App.IndexRoute = Ember.Route.extend({
 App.IndexController = Ember.Controller.extend({
 
   content: Ember.computed.alias('position.issues'),
+  isAttachmentLoad: false,
 
   actions: {
     createIssue: function(text) {
@@ -183,6 +184,9 @@ App.IndexController = Ember.Controller.extend({
         count = count + 1;
         if(count < size){
           self._actions._addAttachment(count, files, size, model, self);
+        }
+        else {
+          self.toggleProperty('isAttachmentLoad');
         }
       });
     },
@@ -330,6 +334,7 @@ App.AttachmentView = Ember.View.extend({
   },
 
   change: function(event) {
+    this.toggleProperty('controller.isAttachmentLoad');
     this.get('controller').send('addAttachment', event.target.files, this.get('context'));
   }
 });
