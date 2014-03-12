@@ -7,6 +7,7 @@
   <title>Ember CouchDB Kit In Action</title>
 
   <link href="/example/assets/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="/example/assets/font-awesome.min.css" rel="stylesheet">
 
   <script src="/vendor/assets/javascripts/jquery.js"></script>
   <script src="/vendor/assets/javascripts/handlebars.js"></script>
@@ -73,7 +74,7 @@
               {{#view App.AttachmentView contextBinding=this}}
                 <button {{action 'browseFile' target=view}} class="btn btn-xs btn-default"> 
                   {{#if controller.isAttachmentLoad}}
-                    <i class="icon icon-spinner icon-spin"></i> 
+                    <i class="fa fa-spinner fa-spin"></i> 
                   {{/if}}
                   Attach 
                 </button>
