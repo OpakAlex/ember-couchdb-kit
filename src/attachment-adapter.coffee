@@ -93,8 +93,13 @@ EmberCouchDBKit.AttachmentAdapter = DS.Adapter.extend
     # just for stubbing purpose which should be defined by default
 
   deleteRecord: (store, type, record) ->
+    url = "%@/%@?rev=%@".fmt(@buildURL(), record.get('id'), record.get('_data.rev'))
+
     return new Ember.RSVP.Promise((resolve, reject) ->
+      request = new XMLHttpRequest()
+      request.open('DELETE', url, true)
       Ember.run(null, resolve, {})
+      request.send(null)
     )
 
   _updateUploadState: (record, request) ->
